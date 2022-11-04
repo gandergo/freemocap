@@ -107,10 +107,10 @@ class ThreadWorkerManager(QWidget):
             charuco_square_size_mm=charuco_square_size_mm,
             session_id=session_id,
         )
-        self._anipose_calibration_worker.start()
-        self._anipose_calibration_worker.in_progress.connect(
-            jupyter_console_print_function_callable
-        )
+        self._anipose_calibration_worker.run()
+        #self._anipose_calibration_worker.in_progress.connect(
+        #    jupyter_console_print_function_callable
+        #)
 
     def launch_detect_2d_skeletons_thread_worker(
         self,
