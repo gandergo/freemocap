@@ -14,7 +14,7 @@ from src.core_processes.capture_volume_calibration.run_anipose_capture_volume_ca
 logger = logging.getLogger(__name__)
 
 
-class AniposeCalibrationThreadWorker(QThread):
+class AniposeCalibrationThreadWorker():
     finished = pyqtSignal()
     in_progress = pyqtSignal(str)
 
@@ -25,14 +25,15 @@ class AniposeCalibrationThreadWorker(QThread):
         charuco_square_size_mm: Union[int, float],
         session_id: str,
     ):
-        super().__init__()
+        #super().__init__()
         self._charuco_board_definition = charuco_board_definition
         self._charuco_square_size_mm = charuco_square_size_mm
         self._calibration_videos_folder_path = calibration_videos_folder_path
         self._session_id = session_id
 
     def _emit_in_progress_data(self, message: str):
-        self.in_progress.emit(message)
+        print('no progress data')
+        #self.in_progress.emit(message)
 
     def run(self):
         logger.info(
@@ -56,4 +57,4 @@ class AniposeCalibrationThreadWorker(QThread):
 
         logger.info("Anipose calibration complete")
 
-        self.finished.emit()
+        #self.finished.emit()
