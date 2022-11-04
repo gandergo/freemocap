@@ -850,7 +850,10 @@ class MainWindow(QMainWindow):
             logger.error(f"ERROR - {str(blender_file_path)} does not exist!")
             return
 
-        os.startfile(str(blender_file_path))
+        import subprocess, sys
+        opener = "open" if sys.platform == "darwin" else "xdg-open"
+        subprocess.call([opener, blender_file_path])
+        #os.startfile(str(blender_file_path))
 
     def _visualize_motion_capture_data(self):
         logger.info(
