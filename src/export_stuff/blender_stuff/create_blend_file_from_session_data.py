@@ -25,6 +25,7 @@ def create_blend_file_from_session_data(
     )
 
     try:
+        blender_exe_path = "/Applications/Blender.app/Contents/MacOS/Blender"
         blender_exe_path = Path(blender_exe_path)
         if not blender_exe_path.exists():
             raise FileNotFoundError(
@@ -48,7 +49,7 @@ def create_blend_file_from_session_data(
     logger.info(f"Starting `blender` sub-process with this command: \n {command_str}")
 
     blender_process = subprocess.Popen(
-        command_str, shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        command_str, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
     )
     while True:
         output = blender_process.stdout.readline()
