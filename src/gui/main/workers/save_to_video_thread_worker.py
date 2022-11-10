@@ -10,13 +10,13 @@ from src.cameras.save_synchronized_videos import save_synchronized_videos
 logger = logging.getLogger(__name__)
 
 
-class SaveToVideoThreadWorker(QThread):
+class SaveToVideoThreadWorker():
     def __init__(
         self,
         dictionary_of_video_recorders: Dict[str, VideoRecorder],
         folder_to_save_videos: Union[str, Path],
     ):
-        super().__init__()
+        # super().__init__()
         self._dictionary_of_video_recorders = dictionary_of_video_recorders
         self._folder_to_save_videos = folder_to_save_videos
 
