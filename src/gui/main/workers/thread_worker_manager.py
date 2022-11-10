@@ -64,10 +64,10 @@ class ThreadWorkerManager(QWidget):
             dictionary_of_video_recorders=dictionary_of_video_recorders,
             folder_to_save_videos=folder_to_save_videos,
         )
-        self._save_to_video_thread_worker.start()
-        self._save_to_video_thread_worker.finished.connect(
-            lambda: self.videos_saved_signal.emit(calibration_videos)
-        )
+        self._save_to_video_thread_worker.run()
+        # self._save_to_video_thread_worker.finished.connect(
+        #     lambda: self.videos_saved_signal.emit(calibration_videos)
+        # )
 
     def launch_anipose_calibration_thread_worker(
         self,
