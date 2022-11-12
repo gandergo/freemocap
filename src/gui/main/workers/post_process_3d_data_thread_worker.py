@@ -14,7 +14,7 @@ from src.core_processes.post_process_skeleton_data.gap_fill_filter_and_origin_al
 logger = logging.getLogger(__name__)
 
 
-class PostProcess3dDataThreadWorker(QThread):
+class PostProcess3dDataThreadWorker():
     finished = pyqtSignal(str)
 
     def __init__(
@@ -27,7 +27,7 @@ class PostProcess3dDataThreadWorker(QThread):
         order: int,
         reference_frame_number: int = None,
     ):
-        super().__init__()
+        # super().__init__()
         self.skel3d_frame_marker_xyz = skel3d_frame_marker_xyz
         self.skeleton_reprojection_error_fr_mar = skeleton_reprojection_error_fr_mar
         self.data_save_path = data_save_path
@@ -46,4 +46,4 @@ class PostProcess3dDataThreadWorker(QThread):
             order=self.order,
             reference_frame_number=self.reference_frame_number,
         )
-        self.finished.emit("Done!")
+        # self.finished.emit("Done!")
