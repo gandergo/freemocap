@@ -86,6 +86,7 @@ class ThreadWorkerManager(QWidget):
             folder_to_save_videos=folder_to_save_videos,
         )
         self._save_to_video_thread_worker.run()
+        self.videos_saved_signal.emit(calibration_videos)
         # self._save_to_video_thread_worker.finished.connect(
         #     lambda: self.videos_saved_signal.emit(calibration_videos)
         # )
@@ -180,12 +181,14 @@ class ThreadWorkerManager(QWidget):
             order=order,
             reference_frame_number=reference_frame_number,
         )
-        self._post_process_3d_data_thread_worker.start()
+        self._post_process_3d_data_thread_worker.run()
+        # self._post_process_3d_data_thread_worker.start()
 
         logger.info("Emitting `convert_to_csv_signal`")
-        self._post_process_3d_data_thread_worker.finished.connect(
-            self.start_convert_npy_to_to_csv_signal.emit
-        )
+        self.start_convert_npy_to_to_csv_signal.emit()
+        # self._post_process_3d_data_thread_worker.finished.connect(
+        #     self.start_convert_npy_to_to_csv_signal.emit
+        # )
 
     def launch_convert_npy_to_csv_thread_worker(
         self,
