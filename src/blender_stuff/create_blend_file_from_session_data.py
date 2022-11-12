@@ -53,7 +53,7 @@ def create_blend_file_from_session_data(
     logger.info(f"Starting `blender` sub-process with this command: \n {command_list}")
 
     blender_process = subprocess.Popen(
-        command_list, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        command_list, shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE
     )
     while True:
         output = blender_process.stdout.readline()
